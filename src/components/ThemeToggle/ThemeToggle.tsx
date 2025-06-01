@@ -29,8 +29,13 @@ export function ThemeToggle() {
     if (theme === "system") {
       const media = window.matchMedia("(prefers-color-scheme: dark)");
       const listener = () => applyTheme("system");
-      media.addEventListener("change", listener);
-      return () => media.removeEventListener("change", listener);
+      if (media.addEventListener) {
+        media.addEventListener("change", listener);
+        return () => media.removeEventListener("change", listener);
+      } else if (media.addListener) {
+        media.addListener(listener);
+        return () => media.removeListener(listener);
+      }
     }
   }, [theme]);
 
