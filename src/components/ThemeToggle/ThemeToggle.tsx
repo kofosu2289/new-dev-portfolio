@@ -44,7 +44,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={cycleTheme}
-      aria-label="Toggle theme mode"
+      aria-label={`Toggle theme mode, current mode: ${theme === "system" ? "System" : theme === "dark" ? "Dark" : "Light"}`}
       className={toggleButton}
     >
       {theme === "system"
