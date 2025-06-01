@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import { lightTheme, darkTheme } from "../../styles/theme.css";
 import { toggleButton } from "./ThemeToggle.css";
 
-type ThemeMode = "light" | "dark" | "system";
+const THEME_STORAGE_KEY = "theme";
 
+type ThemeMode = "light" | "dark" | "system";
 function getSystemTheme(): "light" | "dark" {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<ThemeMode>(() => {
-    const saved = localStorage.getItem("theme") as ThemeMode | null;
+    const saved = localStorage.getItem(THEME_STORAGE_KEY) as ThemeMode | null;
     return saved ?? "system";
   });
 
