@@ -8,7 +8,7 @@ export default function Layout({ children }: PropsWithChildren) {
     <div className={layout}>
       <Header />
       <main className={main} role="main" tabIndex={-1}>
-        {children ? children : null}
+        {children}
       </main>
       <Footer />
     </div>
